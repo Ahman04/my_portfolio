@@ -42,7 +42,7 @@ const projects = [
       'Role-based web application for managing books, categories, and borrowing workflows.',
     tech: ['React', 'Tailwind CSS', 'Flask', 'PostgreSQL'],
     github: 'https://github.com/Ahman04/Digital-Library-Management-System',
-    demo: '#',
+    demo: 'https://digital-library-management-system-two.vercel.app/',
     image: digitalLibraryImage,
   },
   {
