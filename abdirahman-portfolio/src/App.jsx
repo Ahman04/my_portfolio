@@ -1,13 +1,11 @@
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import profileImage from './profile.jpg'
-import apartmentImage from './apartment.png'
-import digitalLibraryImage from './digitallibrary.png'
+import apartmentImage from './apartment.webp'
+import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
-import bootcampImage from './bootcamp.jpg'
-import diplomaImage from './diploma.jpg'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
-import myCertificateImage from './mycerficate.png'
+import myCertificateImage from './mycerficate.webp'
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
@@ -24,6 +22,11 @@ const stagger = {
   },
 }
 
+const cvFilePath = '/Abdirahman_Mohamed_CV.docx'
+const cvOpenPath = '/Abdirahman_Mohamed_CV.pdf'
+const contactFormAction = 'https://formspree.io/f/your-form-id'
+const isContactFormConfigured = !contactFormAction.includes('your-form-id')
+
 const projects = [
   {
     title: 'Apartment Management System',
@@ -32,7 +35,9 @@ const projects = [
       'Client-based full-stack web application built to replace manual Excel tracking with a digital system for managing rental properties and tenants.',
     tech: ['React', 'Tailwind CSS', 'FastAPI', 'PostgreSQL'],
     github: 'https://github.com/Ahman04/apartment-management-system',
-    demo: '#',
+    videoDemo: '/apartmentmanagement.webm',
+    demo: '',
+    demoNote: 'Client project — demo available on request.',
     image: apartmentImage,
   },
   {
@@ -119,7 +124,7 @@ function Hero() {
   return (
     <section className="min-h-screen flex items-center px-6 py-24 relative">
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
-        <motion.div {...fadeUp} className="space-y-8">
+        <Motion.div {...fadeUp} className="space-y-8">
           <div>
             <h1 className="text-4xl md:text-6xl font-semibold tracking-tight font-display">
               Hi, I’m Abdirahman 👋
@@ -151,22 +156,31 @@ function Hero() {
               GitHub
             </a>
             <a
-              href="/Abdirahman_Mohamed_CV.docx"
+              href={cvOpenPath}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-lg border border-white/15 text-slate-100 bg-white/5 hover:bg-white/10 transition-all duration-300"
+            >
+              Open CV
+            </a>
+            <a
+              href={cvFilePath}
+              download="Abdirahman_Mohamed_CV.docx"
               className="px-6 py-3 rounded-lg border border-white/15 text-slate-100 bg-white/5 hover:bg-white/10 transition-all duration-300"
             >
               Download CV
             </a>
           </div>
-        </motion.div>
+        </Motion.div>
 
-        <motion.div
+        <Motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
           viewport={{ once: true, amount: 0.3 }}
           className="flex justify-center lg:justify-end"
         >
-          <motion.div
+          <Motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="relative"
@@ -175,11 +189,11 @@ function Hero() {
             <img
               src={profileImage}
               alt="Portrait of Abdirahman"
-              className="h-72 w-72 md:h-80 md:w-80 rounded-[24px] object-cover object-top border border-white/30 shadow-2xl shadow-cyan-500/25 brightness-105 contrast-105 saturate-110"
+              className="h-80 w-80 md:h-96 md:w-96 rounded-[24px] object-cover object-top border border-white/30 shadow-2xl shadow-cyan-500/25 brightness-105 contrast-105 saturate-110"
               loading="eager"
             />
-          </motion.div>
-        </motion.div>
+          </Motion.div>
+        </Motion.div>
       </div>
     </section>
   )
@@ -190,7 +204,7 @@ function Hero() {
 function About() {
   return (
     <section className="py-24 px-6">
-      <motion.div {...fadeUp} className="max-w-5xl mx-auto">
+      <Motion.div {...fadeUp} className="max-w-5xl mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
           <div className="space-y-6">
             <h2 className="text-3xl md:text-4xl font-semibold font-display">
@@ -232,7 +246,7 @@ function About() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </Motion.div>
     </section>
   )
 }
@@ -242,7 +256,7 @@ function About() {
 function Projects() {
   return (
     <section id="projects" className="py-24 px-6">
-      <motion.div {...fadeUp} className="max-w-6xl mx-auto">
+      <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
           <h2 className="text-3xl md:text-4xl font-semibold font-display">
             Projects
@@ -252,7 +266,7 @@ function Projects() {
           </p>
         </div>
 
-        <motion.div
+        <Motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -262,15 +276,25 @@ function Projects() {
           {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   )
 }
 
-function ProjectCard({ title, role, description, tech, github, demo, image }) {
+function ProjectCard({
+  title,
+  role,
+  description,
+  tech,
+  github,
+  videoDemo,
+  demo,
+  demoNote,
+  image,
+}) {
   return (
-    <motion.div
+    <Motion.div
       variants={{
         hidden: { opacity: 0, y: 16 },
         show: { opacity: 1, y: 0 },
@@ -315,17 +339,30 @@ function ProjectCard({ title, role, description, tech, github, demo, image }) {
           >
             View on GitHub →
           </a>
-          <a
-            href={demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-300 hover:text-cyan-200 transition-colors"
-          >
-            Live Demo →
-          </a>
+          {videoDemo ? (
+            <a
+              href={videoDemo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-200 transition-colors"
+            >
+              Watch Video Demo →
+            </a>
+          ) : demo ? (
+            <a
+              href={demo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-300 hover:text-cyan-200 transition-colors"
+            >
+              Live Demo →
+            </a>
+          ) : (
+            <span className="text-slate-300">{demoNote || 'Demo unavailable.'}</span>
+          )}
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   )
 }
 
@@ -334,7 +371,7 @@ function ProjectCard({ title, role, description, tech, github, demo, image }) {
 function Skills() {
   return (
     <section className="py-24 px-6">
-      <motion.div {...fadeUp} className="max-w-6xl mx-auto">
+      <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
           <h2 className="text-3xl md:text-4xl font-semibold font-display">
             Skills
@@ -344,7 +381,7 @@ function Skills() {
           </p>
         </div>
 
-        <motion.div
+        <Motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -354,15 +391,15 @@ function Skills() {
           {skills.map((skill) => (
             <SkillIcon key={skill.label} {...skill} />
           ))}
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   )
 }
 
 function SkillIcon({ label, icon }) {
   return (
-    <motion.div
+    <Motion.div
       variants={{
         hidden: { opacity: 0, y: 14 },
         show: { opacity: 1, y: 0 },
@@ -375,7 +412,7 @@ function SkillIcon({ label, icon }) {
       <p className="text-sm font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
         {label}
       </p>
-    </motion.div>
+    </Motion.div>
   )
 }
 
@@ -384,7 +421,7 @@ function SkillIcon({ label, icon }) {
 function Certificates() {
   return (
     <section className="py-24 px-6">
-      <motion.div {...fadeUp} className="max-w-6xl mx-auto">
+      <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
           <h2 className="text-3xl md:text-4xl font-semibold font-display">
             Certificates
@@ -394,7 +431,7 @@ function Certificates() {
           </p>
         </div>
 
-        <motion.div
+        <Motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
@@ -404,15 +441,15 @@ function Certificates() {
           {certificates.map((certificate) => (
             <CertificateCard key={certificate.title} {...certificate} />
           ))}
-        </motion.div>
-      </motion.div>
+        </Motion.div>
+      </Motion.div>
     </section>
   )
 }
 
 function CertificateCard({ title, org, year, image, pdf }) {
   return (
-    <motion.div
+    <Motion.div
       variants={{
         hidden: { opacity: 0, y: 14 },
         show: { opacity: 1, y: 0 },
@@ -437,7 +474,7 @@ function CertificateCard({ title, org, year, image, pdf }) {
           View Certificate →
         </a>
       </div>
-    </motion.div>
+    </Motion.div>
   )
 }
 
@@ -446,7 +483,7 @@ function CertificateCard({ title, org, year, image, pdf }) {
 function Education() {
   return (
     <section className="py-24 px-6">
-      <motion.div {...fadeUp} className="max-w-4xl mx-auto">
+      <Motion.div {...fadeUp} className="max-w-4xl mx-auto">
         <div className="text-center mb-12 space-y-3">
           <h2 className="text-3xl md:text-4xl font-semibold font-display">
             Education
@@ -457,7 +494,7 @@ function Education() {
         </div>
 
         <div className="space-y-6">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
@@ -468,9 +505,9 @@ function Education() {
               Software Engineering Bootcamp — Moringa School
             </h3>
             <p className="text-slate-300">2024 – Present</p>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 14 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
@@ -481,9 +518,9 @@ function Education() {
               Diploma in Business Information Technology — Strathmore University
             </h3>
             <p className="text-slate-300">Completed December 2024</p>
-          </motion.div>
+          </Motion.div>
         </div>
-      </motion.div>
+      </Motion.div>
     </section>
   )
 }
@@ -493,24 +530,78 @@ function Education() {
 function Contact() {
   return (
     <section className="py-24 px-6">
-      <motion.div {...fadeUp} className="max-w-6xl mx-auto text-center">
+      <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-semibold mb-3 font-display">
           Let’s Connect
         </h2>
         <p className="text-slate-300 mb-10">
-          Prefer quick contact? Pick a card below and I’ll respond fast.
+          Send a quick message below or use the direct links.
         </p>
 
-        <motion.div
+        <Motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mb-8"
+        >
+          <Motion.form
+            variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+            action={contactFormAction}
+            method="POST"
+            className="border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 shadow-lg shadow-black/20"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="Your name"
+                className="rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+              />
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Your email"
+                className="rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+              />
+            </div>
+            <textarea
+              name="message"
+              required
+              rows="5"
+              placeholder="..."
+              className="w-full rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+            />
+            <input type="hidden" name="_subject" value="New portfolio contact message" />
+            <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+              <p className="text-xs text-slate-400">
+                {isContactFormConfigured
+                  ? 'Messages are sent securely via Formspree.'
+                  : 'Set your Formspree form ID in App.jsx to enable submissions.'}
+              </p>
+              <button
+                type="submit"
+                className="px-5 py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-900 font-semibold hover:brightness-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={!isContactFormConfigured}
+              >
+                Send Message
+              </button>
+            </div>
+          </Motion.form>
+        </Motion.div>
+
+        <Motion.div
           variants={stagger}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          <motion.a
+          <Motion.a
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
-            href="mailto:m.abdirahmanmohmaed.adan@gmail.com"
+            href="mailto:m.abdirahmanmohamed.adan@gmail.com"
             className="group border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
           >
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl group-hover:bg-cyan-400 group-hover:text-slate-900 transition-all duration-300">
@@ -518,11 +609,11 @@ function Contact() {
             </div>
             <h3 className="text-lg font-semibold mb-2">Email Me</h3>
             <p className="text-sm text-slate-300">
-              m.abdirahmanmohmaed.adan@gmail.com
+              m.abdirahmanmohamed.adan@gmail.com
             </p>
-          </motion.a>
+          </Motion.a>
 
-          <motion.a
+          <Motion.a
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
             href="https://www.linkedin.com/in/abdirahman-mohamed-9b4a5a396/"
             target="_blank"
@@ -536,9 +627,9 @@ function Contact() {
             <p className="text-sm text-slate-300">
               Connect with me professionally
             </p>
-          </motion.a>
+          </Motion.a>
 
-          <motion.a
+          <Motion.a
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
             href="https://github.com/Ahman04"
             target="_blank"
@@ -550,9 +641,9 @@ function Contact() {
             </div>
             <h3 className="text-lg font-semibold mb-2">GitHub</h3>
             <p className="text-sm text-slate-300">Browse my code and projects</p>
-          </motion.a>
-        </motion.div>
-      </motion.div>
+          </Motion.a>
+        </Motion.div>
+      </Motion.div>
     </section>
   )
 }
