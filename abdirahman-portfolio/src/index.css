@@ -1,6 +1,32 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
+:root {
+  --color-bg: #38001c;
+  --color-surface: #571133;
+  --color-text: #fff1e0;
+  --color-muted: #ffd7b2;
+  --color-muted-soft: #f4b98c;
+  --color-border: rgba(255, 163, 64, 0.26);
+  --color-border-strong: rgba(0, 194, 186, 0.34);
+  --color-accent-cyan: #00c2ba;
+  --color-accent-cyan-hover: #8afef8;
+  --color-accent-indigo: #017a74;
+  --color-accent-emerald: #ffa340;
+  --accent-about-1: #ffa340;
+  --accent-about-2: #00c2ba;
+  --accent-projects-1: #00c2ba;
+  --accent-projects-2: #ffa340;
+  --accent-skills-1: #017a74;
+  --accent-skills-2: #8afef8;
+  --accent-cert-1: #eb9cc3;
+  --accent-cert-2: #ffa340;
+  --accent-edu-1: #571133;
+  --accent-edu-2: #00c2ba;
+  --accent-contact-1: #ffa340;
+  --accent-contact-2: #eb9cc3;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -28,18 +54,243 @@
 .chip-sheen {
   background-image: linear-gradient(
     120deg,
-    rgba(34, 211, 238, 0.18),
-    rgba(16, 185, 129, 0.18),
-    rgba(34, 211, 238, 0.18)
+    color-mix(in oklab, var(--color-accent-cyan) 26%, transparent),
+    color-mix(in oklab, var(--color-accent-emerald) 26%, transparent),
+    color-mix(in oklab, var(--color-accent-cyan) 26%, transparent)
   );
   background-size: 200% 200%;
   animation: chipSheen 4s ease-in-out infinite;
 }
 
 body {
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: "Manrope", "Segoe UI", sans-serif;
+  line-height: 1.6;
 }
 
 .font-display {
   font-family: "DM Serif Display", "Times New Roman", serif;
+}
+
+/* Theme mapping: keeps your existing classes but centralizes colors above. */
+.bg-slate-950 {
+  background-color: var(--color-bg) !important;
+}
+
+.bg-white\/5 {
+  background-color: color-mix(in oklab, var(--color-surface) 72%, transparent) !important;
+}
+
+.text-slate-100 {
+  color: var(--color-text) !important;
+}
+
+.text-slate-200 {
+  color: color-mix(in oklab, var(--color-text) 92%, #fff) !important;
+}
+
+.text-slate-300,
+.text-slate-400 {
+  color: var(--color-muted) !important;
+}
+
+.text-slate-300 {
+  font-weight: 500;
+}
+
+.text-slate-400 {
+  color: var(--color-muted-soft) !important;
+}
+
+.border-white\/10 {
+  border-color: var(--color-border) !important;
+}
+
+.border-white\/15,
+.border-white\/30 {
+  border-color: var(--color-border-strong) !important;
+}
+
+.text-cyan-300 {
+  color: var(--color-accent-cyan) !important;
+}
+
+.hover\:text-cyan-200:hover {
+  color: var(--color-accent-cyan-hover) !important;
+}
+
+.bg-slate-900\/60 {
+  background-color: color-mix(in oklab, var(--color-bg) 78%, #000) !important;
+}
+
+.focus\:ring-cyan-400\/60:focus {
+  --tw-ring-color: color-mix(in oklab, var(--color-accent-cyan) 60%, #fff) !important;
+}
+
+.group:hover .group-hover\:bg-cyan-400 {
+  background-color: var(--color-accent-emerald) !important;
+}
+
+.group:hover .group-hover\:text-slate-900 {
+  color: #3b0b23 !important;
+}
+
+.bg-blob-cyan {
+  background-color: color-mix(in oklab, var(--color-accent-cyan) 24%, transparent);
+}
+
+.bg-blob-indigo {
+  background-color: color-mix(in oklab, var(--color-accent-indigo) 20%, transparent);
+}
+
+.bg-blob-emerald {
+  background-color: color-mix(in oklab, var(--color-accent-emerald) 16%, transparent);
+}
+
+@keyframes speen {
+  0% {
+    transform: rotate(10deg);
+  }
+  50% {
+    transform: rotate(190deg);
+  }
+  100% {
+    transform: rotate(370deg);
+  }
+}
+
+@keyframes woah {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+}
+
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.45rem;
+  width: 45%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-cyan), var(--color-accent-emerald));
+  border-radius: 999px;
+}
+
+.name-emphasis {
+  position: relative;
+  display: inline-block;
+  color: var(--color-text);
+}
+
+.name-emphasis::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  width: 0%;
+  height: 0.22em;
+  background: linear-gradient(90deg, var(--color-accent-emerald), var(--color-accent-cyan));
+  border-radius: 999px;
+  opacity: 0.6;
+  animation: nameSweep 1.6s ease-out 0.6s forwards;
+}
+
+@keyframes nameSweep {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 0.7;
+  }
+}
+
+.interactive-card {
+  transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
+}
+
+.interactive-card:hover {
+  border-color: color-mix(in oklab, var(--color-accent-emerald) 55%, var(--color-accent-cyan) 45%);
+}
+
+.link-sweep {
+  position: relative;
+}
+
+.link-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 220ms ease;
+  background: linear-gradient(90deg, var(--color-accent-cyan-hover), var(--color-accent-emerald));
+  border-radius: 999px;
+}
+
+.link-sweep:hover::after {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+.section-about .section-title::after {
+  background: linear-gradient(90deg, var(--accent-about-1), var(--accent-about-2));
+}
+
+.section-projects .section-title::after {
+  background: linear-gradient(90deg, var(--accent-projects-1), var(--accent-projects-2));
+}
+
+.section-skills .section-title::after {
+  background: linear-gradient(90deg, var(--accent-skills-1), var(--accent-skills-2));
+}
+
+.section-certificates .section-title::after {
+  background: linear-gradient(90deg, var(--accent-cert-1), var(--accent-cert-2));
+}
+
+.section-education .section-title::after {
+  background: linear-gradient(90deg, var(--accent-edu-1), var(--accent-edu-2));
+}
+
+.section-contact .section-title::after {
+  background: linear-gradient(90deg, var(--accent-contact-1), var(--accent-contact-2));
+}
+
+.section-about {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent-about-1) 8%, transparent), transparent 36%);
+}
+
+.section-projects {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent-projects-1) 7%, transparent), transparent 36%);
+}
+
+.section-skills {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent-skills-2) 6%, transparent), transparent 36%);
+}
+
+.section-certificates {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent-cert-2) 7%, transparent), transparent 36%);
+}
+
+.section-education {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent-edu-2) 6%, transparent), transparent 36%);
+}
+
+.section-contact {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--accent-contact-1) 7%, transparent), transparent 36%);
 }

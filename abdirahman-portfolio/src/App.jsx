@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { motion as Motion } from 'framer-motion'
+import { GlowButton } from '@/components/ui/shiny-button-1'
 import profileImage from './profile.jpg'
 import apartmentImage from './apartment.webp'
 import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
+import myDukaImage from './Warehouse inventory management overview.png'
+import synergyCircleImage from './Pasted image.png'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
 import myCertificateImage from './mycerficate.webp'
@@ -24,10 +28,54 @@ const stagger = {
 
 const cvFilePath = '/Abdirahman_Mohamed_CV.docx'
 const cvOpenPath = '/Abdirahman_Mohamed_CV.pdf'
-const contactFormAction = 'https://formspree.io/f/your-form-id'
+const contactFormAction = 'https://formspree.io/f/mwvqzldv'
 const isContactFormConfigured = !contactFormAction.includes('your-form-id')
+const whatsappNumber = '254700000000'
+const whatsappMessage = encodeURIComponent(
+  "Hi Abdirahman, I'd like to talk about a project.",
+)
+const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
 
 const projects = [
+  {
+    title: 'The Synergy Circle - Event & Community Platform',
+    role: 'Mobile-first web app (frontend)',
+    description:
+      'Built a mobile-first platform for communities to publish events, manage registrations, and grow engagement, including event discovery filters, detailed event pages, registration flow, shareable links, event-level SEO metadata, and a protected admin dashboard for event CRUD, featured events, attendance, and analytics.',
+    tech: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'React Router',
+      'Custom CSS system',
+      'FastAPI architecture planned',
+      'PostgreSQL architecture planned',
+    ],
+    github: 'https://github.com/Ahman04/synergy-circle-hub.git',
+    demo: '',
+    demoNote: 'Demo/repository available on request.',
+    image: synergyCircleImage,
+  },
+  {
+    title: 'MyDuka - Inventory and Reporting System',
+    role: 'Team project (full-stack)',
+    description:
+      'Role-based inventory management web application built to replace manual stock tracking and improve procurement/payment visibility across merchant, admin, and clerk workflows.',
+    tech: [
+      'React',
+      'Tailwind CSS',
+      'FastAPI',
+      'SQLAlchemy',
+      'Alembic',
+      'JWT Authentication',
+      'SQLite (development)',
+      'PostgreSQL-ready',
+    ],
+    github: 'https://github.com/Ahman04/MYDUKA.git',
+    demo: '',
+    demoNote: 'Team project — demo/repository available on request.',
+    image: myDukaImage,
+  },
   {
     title: 'Apartment Management System',
     role: 'Solo project (end-to-end)',
@@ -102,9 +150,9 @@ function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 right-10 h-96 w-96 rounded-full bg-cyan-500/20 blur-[140px]" />
-        <div className="absolute top-40 left-0 h-[28rem] w-[28rem] rounded-full bg-indigo-500/15 blur-[160px]" />
-        <div className="absolute bottom-0 right-0 h-[26rem] w-[26rem] rounded-full bg-emerald-400/10 blur-[180px]" />
+        <div className="absolute -top-40 right-10 h-96 w-96 rounded-full bg-blob-cyan blur-[140px]" />
+        <div className="absolute top-40 left-0 h-[28rem] w-[28rem] rounded-full bg-blob-indigo blur-[160px]" />
+        <div className="absolute bottom-0 right-0 h-[26rem] w-[26rem] rounded-full bg-blob-emerald blur-[180px]" />
       </div>
       <Hero />
       <About />
@@ -122,16 +170,28 @@ function App() {
 
 function Hero() {
   return (
-    <section className="min-h-screen flex items-center px-6 py-24 relative">
+    <section className="section-hero min-h-screen flex items-center px-6 py-24 relative">
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
         <Motion.div {...fadeUp} className="space-y-8">
           <div>
-            <h1 className="text-4xl md:text-6xl font-semibold tracking-tight font-display">
-              Hi, I’m Abdirahman 👋
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-300 mt-4">
+            <Motion.h1
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.4 }}
+              className="text-4xl md:text-6xl font-semibold tracking-tight font-display"
+            >
+              Hi, I’m <span className="name-emphasis">Abdirahman</span> 👋
+            </Motion.h1>
+            <Motion.p
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
+              viewport={{ once: true, amount: 0.4 }}
+              className="text-xl md:text-2xl text-slate-300 mt-4"
+            >
               Junior Software Developer
-            </p>
+            </Motion.p>
           </div>
 
           <p className="text-slate-300 leading-relaxed max-w-2xl">
@@ -140,36 +200,30 @@ function Hero() {
             problems, and improving through hands-on projects and feedback.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#projects"
-              className="px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-900 font-semibold hover:brightness-110 transition-all duration-300 shadow-lg shadow-cyan-500/20"
-            >
-              View Projects
-            </a>
-            <a
-              href="https://github.com/Ahman04"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-lg border border-white/15 text-slate-100 bg-white/5 hover:bg-white/10 transition-all duration-300"
-            >
-              GitHub
-            </a>
-            <a
-              href={cvOpenPath}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-lg border border-white/15 text-slate-100 bg-white/5 hover:bg-white/10 transition-all duration-300"
-            >
-              Open CV
-            </a>
-            <a
-              href={cvFilePath}
-              download="Abdirahman_Mohamed_CV.docx"
-              className="px-6 py-3 rounded-lg border border-white/15 text-slate-100 bg-white/5 hover:bg-white/10 transition-all duration-300"
-            >
-              Download CV
-            </a>
+          <div className="flex flex-wrap gap-4">
+            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <GlowButton href="#projects">View Projects</GlowButton>
+            </Motion.div>
+            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <GlowButton href="https://github.com/Ahman04" target="_blank" rel="noopener noreferrer">
+                GitHub
+              </GlowButton>
+            </Motion.div>
+            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <GlowButton href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+                Let&apos;s Talk
+              </GlowButton>
+            </Motion.div>
+            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <GlowButton href={cvOpenPath} target="_blank" rel="noopener noreferrer">
+                Open CV
+              </GlowButton>
+            </Motion.div>
+            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <GlowButton href={cvFilePath} download="Abdirahman_Mohamed_CV.docx">
+                Download CV
+              </GlowButton>
+            </Motion.div>
           </div>
         </Motion.div>
 
@@ -203,31 +257,40 @@ function Hero() {
 
 function About() {
   return (
-    <section className="py-24 px-6">
+    <section className="section-about py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-5xl mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
           <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-semibold font-display">
+            <Motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: 'easeOut' }}
+              viewport={{ once: true, amount: 0.45 }}
+              className="text-3xl md:text-4xl font-semibold font-display section-title"
+            >
               About Me
-            </h2>
+            </Motion.h2>
             <p className="text-slate-300 leading-relaxed">
-              I’m a junior software developer who enjoys building practical,
-              user-focused web applications. I like learning by doing — turning
-              ideas into working features, refining UI details, and improving
-              performance as I go.
+              I’m Abdirahman Mohamed, a passionate Software Engineer with a
+              strong focus on building practical, user-centered web
+              applications. I specialize in developing full-stack solutions
+              that solve real-world problems using modern technologies.
             </p>
             <p className="text-slate-300 leading-relaxed">
-              I’m most comfortable with Python, React, and PostgreSQL, and I’m
-              always expanding my skills through projects and feedback. I value
-              clear communication, curiosity, and steady growth.
+              My experience includes working with React, Tailwind CSS, FastAPI,
+              SQLAlchemy, PostgreSQL, and JWT authentication to build scalable,
+              secure systems. I enjoy turning complex requirements into clean,
+              intuitive interfaces backed by reliable APIs.
             </p>
             <p className="text-slate-300 leading-relaxed">
-              Right now, I’m learning more about clean architecture, testing
-              practices, and how to ship products that feel smooth and reliable.
+              Beyond coding, I’m deeply interested in AI-driven solutions,
+              automation, and continuous learning. I’m currently growing my
+              skills through hands-on projects and real client work, with the
+              goal of contributing to impactful products and innovative teams.
             </p>
           </div>
 
-          <div className="border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 shadow-lg shadow-black/20">
+          <div className="interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 shadow-lg shadow-black/20">
             <h3 className="text-lg font-semibold mb-4">Values & Focus</h3>
             <ul className="space-y-3 text-slate-300 text-sm">
               <li>• Curious learner who grows through feedback</li>
@@ -255,12 +318,18 @@ function About() {
 
 function Projects() {
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="section-projects py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
-          <h2 className="text-3xl md:text-4xl font-semibold font-display">
+          <Motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.45 }}
+            className="text-3xl md:text-4xl font-semibold font-display section-title"
+          >
             Projects
-          </h2>
+          </Motion.h2>
           <p className="text-slate-300">
             Selected work focused on practical, real-world impact.
           </p>
@@ -301,14 +370,14 @@ function ProjectCard({
       }}
       whileHover={{ rotateX: 2, rotateY: -2, y: -6 }}
       transition={{ type: 'spring', stiffness: 180, damping: 16 }}
-      className="border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden"
+      className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden"
       style={{ transformStyle: 'preserve-3d' }}
     >
       <div className="relative h-44">
         <img
           src={image}
           alt={`${title} preview`}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
@@ -331,20 +400,24 @@ function ProjectCard({
           ))}
         </div>
         <div className="flex items-center gap-4 text-sm font-medium">
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-cyan-300 hover:text-cyan-200 transition-colors"
-          >
-            View on GitHub →
-          </a>
+          {github ? (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-sweep text-cyan-300 hover:text-cyan-200 transition-colors"
+            >
+              View on GitHub →
+            </a>
+          ) : (
+            <span className="text-slate-300">Repository available on request.</span>
+          )}
           {videoDemo ? (
             <a
               href={videoDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-300 hover:text-cyan-200 transition-colors"
+              className="link-sweep text-cyan-300 hover:text-cyan-200 transition-colors"
             >
               Watch Video Demo →
             </a>
@@ -353,7 +426,7 @@ function ProjectCard({
               href={demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-300 hover:text-cyan-200 transition-colors"
+              className="link-sweep text-cyan-300 hover:text-cyan-200 transition-colors"
             >
               Live Demo →
             </a>
@@ -370,12 +443,18 @@ function ProjectCard({
 
 function Skills() {
   return (
-    <section className="py-24 px-6">
+    <section className="section-skills py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
-          <h2 className="text-3xl md:text-4xl font-semibold font-display">
+          <Motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.45 }}
+            className="text-3xl md:text-4xl font-semibold font-display section-title"
+          >
             Skills
-          </h2>
+          </Motion.h2>
           <p className="text-slate-300">
             A focused toolkit for building modern web applications.
           </p>
@@ -404,9 +483,10 @@ function SkillIcon({ label, icon }) {
         hidden: { opacity: 0, y: 14 },
         show: { opacity: 1, y: 0 },
       }}
-      className="group border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-5 text-center shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300"
+      whileHover={{ y: -8, scale: 1.03 }}
+      className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-5 text-center shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300"
     >
-      <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl group-hover:bg-cyan-400 group-hover:text-slate-900 transition-all duration-300">
+      <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl group-hover:bg-cyan-400 group-hover:text-slate-900 group-hover:-translate-y-1 group-hover:rotate-6 transition-all duration-300">
         {icon}
       </div>
       <p className="text-sm font-medium text-slate-300 group-hover:text-slate-100 transition-colors">
@@ -420,12 +500,18 @@ function SkillIcon({ label, icon }) {
 
 function Certificates() {
   return (
-    <section className="py-24 px-6">
+    <section className="section-certificates py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
-          <h2 className="text-3xl md:text-4xl font-semibold font-display">
+          <Motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.45 }}
+            className="text-3xl md:text-4xl font-semibold font-display section-title"
+          >
             Certificates
-          </h2>
+          </Motion.h2>
           <p className="text-slate-300">
             Proof of learning and continuous growth.
           </p>
@@ -454,12 +540,13 @@ function CertificateCard({ title, org, year, image, pdf }) {
         hidden: { opacity: 0, y: 14 },
         show: { opacity: 1, y: 0 },
       }}
-      className="border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl overflow-hidden shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300"
+      whileHover={{ y: -6, scale: 1.01 }}
+      className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl overflow-hidden shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300"
     >
       <img
         src={image}
         alt={`${title} certificate`}
-        className="h-52 w-full object-cover"
+        className="h-52 w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
       />
       <div className="p-6 space-y-2">
         <h3 className="text-lg font-semibold">{title}</h3>
@@ -469,7 +556,7 @@ function CertificateCard({ title, org, year, image, pdf }) {
           href={pdf}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:text-cyan-200 transition-colors"
+          className="link-sweep inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:text-cyan-200 transition-colors"
         >
           View Certificate →
         </a>
@@ -482,12 +569,18 @@ function CertificateCard({ title, org, year, image, pdf }) {
 
 function Education() {
   return (
-    <section className="py-24 px-6">
+    <section className="section-education py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-4xl mx-auto">
         <div className="text-center mb-12 space-y-3">
-          <h2 className="text-3xl md:text-4xl font-semibold font-display">
+          <Motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.45 }}
+            className="text-3xl md:text-4xl font-semibold font-display section-title"
+          >
             Education
-          </h2>
+          </Motion.h2>
           <p className="text-slate-300">
             A solid foundation in software development and technology.
           </p>
@@ -499,7 +592,8 @@ function Education() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
             viewport={{ once: true, amount: 0.2 }}
-            className="border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
+            whileHover={{ y: -4, scale: 1.01 }}
+            className="interactive-card border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
           >
             <h3 className="font-semibold">
               Software Engineering Bootcamp — Moringa School
@@ -512,7 +606,8 @@ function Education() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
+            whileHover={{ y: -4, scale: 1.01 }}
+            className="interactive-card border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
           >
             <h3 className="font-semibold">
               Diploma in Business Information Technology — Strathmore University
@@ -528,15 +623,55 @@ function Education() {
 /* ================= CONTACT ================= */
 
 function Contact() {
+  const [submitStatus, setSubmitStatus] = useState('idle')
+
+  async function handleContactSubmit(event) {
+    event.preventDefault()
+    setSubmitStatus('sending')
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch(contactFormAction, {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      })
+
+      if (response.ok) {
+        form.reset()
+        setSubmitStatus('success')
+        return
+      }
+
+      setSubmitStatus('error')
+    } catch {
+      setSubmitStatus('error')
+    }
+  }
+
   return (
-    <section className="py-24 px-6">
+    <section className="section-contact py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-3 font-display">
+        <Motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+          viewport={{ once: true, amount: 0.45 }}
+          className="text-3xl md:text-4xl font-semibold mb-3 font-display section-title"
+        >
           Let’s Connect
-        </h2>
-        <p className="text-slate-300 mb-10">
+        </Motion.h2>
+        <Motion.p
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: 'easeOut', delay: 0.06 }}
+          viewport={{ once: true, amount: 0.45 }}
+          className="text-slate-300 mb-10"
+        >
           Send a quick message below or use the direct links.
-        </p>
+        </Motion.p>
 
         <Motion.div
           variants={stagger}
@@ -549,7 +684,9 @@ function Contact() {
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
             action={contactFormAction}
             method="POST"
-            className="border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 shadow-lg shadow-black/20"
+            onSubmit={handleContactSubmit}
+            whileHover={{ y: -4, scale: 1.005 }}
+            className="interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 shadow-lg shadow-black/20"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <input
@@ -571,7 +708,7 @@ function Contact() {
               name="message"
               required
               rows="5"
-              placeholder="..."
+              placeholder="Tell me about your project..."
               className="w-full rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
             />
             <input type="hidden" name="_subject" value="New portfolio contact message" />
@@ -581,14 +718,22 @@ function Contact() {
                   ? 'Messages are sent securely via Formspree.'
                   : 'Set your Formspree form ID in App.jsx to enable submissions.'}
               </p>
-              <button
+              <GlowButton
                 type="submit"
-                className="px-5 py-3 rounded-lg bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-900 font-semibold hover:brightness-110 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={!isContactFormConfigured}
+                className={!isContactFormConfigured || submitStatus === 'sending' ? 'opacity-50' : ''}
+                disabled={!isContactFormConfigured || submitStatus === 'sending'}
               >
-                Send Message
-              </button>
+                {submitStatus === 'sending' ? 'Sending...' : 'Send Message'}
+              </GlowButton>
             </div>
+            {submitStatus === 'success' ? (
+              <p className="mt-3 text-sm text-emerald-300">Thanks! Your message has been sent.</p>
+            ) : null}
+            {submitStatus === 'error' ? (
+              <p className="mt-3 text-sm text-rose-300">
+                Sorry, something went wrong. Please try again.
+              </p>
+            ) : null}
           </Motion.form>
         </Motion.div>
 
@@ -601,8 +746,9 @@ function Contact() {
         >
           <Motion.a
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+            whileHover={{ y: -6, scale: 1.01 }}
             href="mailto:m.abdirahmanmohamed.adan@gmail.com"
-            className="group border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
+            className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
           >
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl group-hover:bg-cyan-400 group-hover:text-slate-900 transition-all duration-300">
               ✉️
@@ -615,10 +761,11 @@ function Contact() {
 
           <Motion.a
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+            whileHover={{ y: -6, scale: 1.01 }}
             href="https://www.linkedin.com/in/abdirahman-mohamed-9b4a5a396/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
+            className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
           >
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl group-hover:bg-cyan-400 group-hover:text-slate-900 transition-all duration-300">
               in
@@ -631,10 +778,11 @@ function Contact() {
 
           <Motion.a
             variants={{ hidden: { opacity: 0, y: 12 }, show: { opacity: 1, y: 0 } }}
+            whileHover={{ y: -6, scale: 1.01 }}
             href="https://github.com/Ahman04"
             target="_blank"
             rel="noopener noreferrer"
-            className="group border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
+            className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 text-left shadow-lg shadow-black/20 hover:shadow-cyan-500/25 transition-all duration-300"
           >
             <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-2xl group-hover:bg-cyan-400 group-hover:text-slate-900 transition-all duration-300">
               ⌁
