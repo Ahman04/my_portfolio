@@ -598,7 +598,23 @@ function Education() {
             <h3 className="font-semibold">
               Software Engineering Bootcamp — Moringa School
             </h3>
-            <p className="text-slate-300">2024 – Present</p>
+            <p className="text-slate-300">Completed 2026</p>
+          </Motion.div>
+
+          <Motion.div
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut', delay: 0.03 }}
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ y: -4, scale: 1.01 }}
+            className="interactive-card border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
+          >
+            <h3 className="font-semibold">
+              Artificial Intelligence (Part Time) — Moringa School
+            </h3>
+            <p className="text-slate-300">
+              Completed December 18, 2025 (course ran Dec 1–18, 2025)
+            </p>
           </Motion.div>
 
           <Motion.div
