@@ -29,7 +29,9 @@ const stagger = {
 const cvFileName =
   'Abdirahman_Mohamed_ IT Technical Support & Junior Software Developer_CV.docx'
 const cvFilePath = `/${encodeURIComponent(cvFileName)}`
-const cvOpenPath = cvFilePath
+const cvPdfFileName =
+  'Abdirahman_Mohamed_ IT Technical Support & Junior Software Developer_CV.docx.pdf'
+const cvOpenPath = `/${encodeURIComponent(cvPdfFileName)}`
 const contactFormAction = 'https://formspree.io/f/mwvqzldv'
 const isContactFormConfigured = !contactFormAction.includes('your-form-id')
 const whatsappNumber = '254700000000'
