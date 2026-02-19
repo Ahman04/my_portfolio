@@ -26,8 +26,10 @@ const stagger = {
   },
 }
 
-const cvFilePath = '/Abdirahman_Mohamed_CV.docx'
-const cvOpenPath = '/Abdirahman_Mohamed_CV.pdf'
+const cvFileName =
+  'Abdirahman_Mohamed_ IT Technical Support & Junior Software Developer_CV.docx'
+const cvFilePath = `/${encodeURIComponent(cvFileName)}`
+const cvOpenPath = cvFilePath
 const contactFormAction = 'https://formspree.io/f/mwvqzldv'
 const isContactFormConfigured = !contactFormAction.includes('your-form-id')
 const whatsappNumber = '254700000000'
@@ -72,8 +74,8 @@ const projects = [
       'PostgreSQL-ready',
     ],
     github: 'https://github.com/Ahman04/MYDUKA.git',
-    demo: '',
-    demoNote: 'Team project — demo/repository available on request.',
+    demo: 'https://myduka-virid.vercel.app/',
+    demoNote: 'Team project — live demo and repository available.',
     image: myDukaImage,
   },
   {
@@ -111,6 +113,10 @@ const projects = [
 ]
 
 const skills = [
+  { label: 'IT Technical Support', icon: '🛠️' },
+  { label: 'Hardware & Software Setup', icon: '💻' },
+  { label: 'System Administration Basics', icon: '⚙️' },
+  { label: 'End-User Support', icon: '🤝' },
   { label: 'React', icon: '⚛️' },
   { label: 'HTML5', icon: '📄' },
   { label: 'CSS3', icon: '🎨' },
@@ -190,14 +196,16 @@ function Hero() {
               viewport={{ once: true, amount: 0.4 }}
               className="text-xl md:text-2xl text-slate-300 mt-4"
             >
-              Junior Software Developer
+              IT Technical Support &amp; Junior Software Developer
             </Motion.p>
           </div>
 
           <p className="text-slate-300 leading-relaxed max-w-2xl">
-            I build practical full-stack web applications using Python, React,
-            and PostgreSQL. I enjoy learning new technologies, solving real
-            problems, and improving through hands-on projects and feedback.
+            I build practical full-stack web applications and provide
+            entry-level IT technical support, including network
+            troubleshooting, system setup, and end-user assistance. I enjoy
+            solving real problems and improving through hands-on projects and
+            feedback.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -220,7 +228,7 @@ function Hero() {
               </GlowButton>
             </Motion.div>
             <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <GlowButton href={cvFilePath} download="Abdirahman_Mohamed_CV.docx">
+              <GlowButton href={cvFilePath} download={cvFileName}>
                 Download CV
               </GlowButton>
             </Motion.div>
@@ -271,23 +279,17 @@ function About() {
               About Me
             </Motion.h2>
             <p className="text-slate-300 leading-relaxed">
-              I’m Abdirahman Mohamed, a passionate Software Engineer with a
-              strong focus on building practical, user-centered web
-              applications. I specialize in developing full-stack solutions
-              that solve real-world problems using modern technologies.
+              Motivated junior professional with a Diploma in Business
+              Information Technology from Strathmore University, completed
+              Software Engineering Bootcamp training from Moringa School, and
+              Artificial Intelligence Launchpad certification. Eager to
+              contribute as an IT Technical Support partner while leveraging
+              software development capabilities to support organizational
+              technology needs and digital solutions. Committed to continuous
+              learning and professional growth in a collaborative team
+              environment.
             </p>
-            <p className="text-slate-300 leading-relaxed">
-              My experience includes working with React, Tailwind CSS, FastAPI,
-              SQLAlchemy, PostgreSQL, and JWT authentication to build scalable,
-              secure systems. I enjoy turning complex requirements into clean,
-              intuitive interfaces backed by reliable APIs.
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              Beyond coding, I’m deeply interested in AI-driven solutions,
-              automation, and continuous learning. I’m currently growing my
-              skills through hands-on projects and real client work, with the
-              goal of contributing to impactful products and innovative teams.
-            </p>
+
           </div>
 
           <div className="interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl p-6 shadow-lg shadow-black/20">
@@ -296,6 +298,7 @@ function About() {
               <li>• Curious learner who grows through feedback</li>
               <li>• Clean, readable code and thoughtful UI</li>
               <li>• Practical solutions that help real users</li>
+              <li>• User-focused IT support and reliable issue resolution</li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-2">
               {['Python', 'React', 'PostgreSQL', 'APIs', 'Testing'].map((tag) => (
