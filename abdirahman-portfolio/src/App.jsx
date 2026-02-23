@@ -7,6 +7,7 @@ import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
 import myDukaImage from './Warehouse inventory management overview.png'
 import synergyCircleImage from './Pasted image.png'
+import globeVistaImage from './hero section.png'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
 import myCertificateImage from './mycerficate.webp'
@@ -26,11 +27,9 @@ const stagger = {
   },
 }
 
-const cvFileName =
-  'Abdirahman_Mohamed_ IT Technical Support & Junior Software Developer_CV .docx'
+const cvFileName = 'Abdirahman Mohamed Adan_CV.docx'
 const cvFilePath = `/${encodeURIComponent(cvFileName)}`
-const cvPdfFileName =
-  'Abdirahman_Mohamed_ IT Technical Support & Junior Software Developer_CV.docx .pdf'
+const cvPdfFileName = 'Abdirahman Mohamed Adan_CV.pdf'
 const cvOpenPath = `/${encodeURIComponent(cvPdfFileName)}`
 const contactFormAction = 'https://formspree.io/f/mwvqzldv'
 const isContactFormConfigured = !contactFormAction.includes('your-form-id')
@@ -42,23 +41,45 @@ const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
 
 const projects = [
   {
-    title: 'The Synergy Circle - Event & Community Platform',
-    role: 'Mobile-first web app (frontend)',
+    title: 'Apartment Management System',
+    role: 'Solo project (end-to-end)',
     description:
-      'Built a mobile-first platform for communities to publish events, manage registrations, and grow engagement, including event discovery filters, detailed event pages, registration flow, shareable links, event-level SEO metadata, and a protected admin dashboard for event CRUD, featured events, attendance, and analytics.',
+      'Client-based full-stack web application built to replace manual Excel tracking with a digital system for managing rental properties and tenants.',
     tech: [
       'React',
-      'TypeScript',
-      'Vite',
-      'React Router',
-      'Custom CSS system',
-      'FastAPI architecture planned',
-      'PostgreSQL architecture planned',
+      'Tailwind CSS',
+      'FastAPI',
+      'PostgreSQL',
+      'DigitalOcean Deployment',
+      'Namecheap Domain',
     ],
-    github: 'https://github.com/Ahman04/synergy-circle-hub.git',
+    github: 'https://github.com/Ahman04/apartment-management-system',
+    videoDemo: '/apartmentmanagement.webm',
     demo: '',
-    demoNote: 'Demo/repository available on request.',
-    image: synergyCircleImage,
+    demoNote: 'Client project — demo available on request.',
+    image: apartmentImage,
+  },
+  {
+    title: 'GLOBEVISTA Adventure Ltd Website',
+    role: 'Frontend Developer - Marketing/Corporate Website (frontend-only)',
+    description:
+      'Premium multi-page corporate travel and team-building website built for a Nairobi-based company to present services, approach, testimonials, gallery, and contact details with a polished black-gold brand system.',
+    tech: [
+      'React (Vite + TypeScript)',
+      'Tailwind CSS',
+      'React Router',
+      'Framer Motion',
+      'shadcn/ui (customized primitives)',
+      'Radix UI',
+      'Sonner Toast',
+      'Lucide Icons',
+      'Responsive Design',
+      'Vercel Deployment',
+    ],
+    github: 'https://github.com/Ahman04/globevista-website.git',
+    demo: 'https://globevista-website.vercel.app/',
+    demoNote: 'Live demo available.',
+    image: globeVistaImage,
   },
   {
     title: 'MyDuka - Inventory and Reporting System',
@@ -81,18 +102,6 @@ const projects = [
     image: myDukaImage,
   },
   {
-    title: 'Apartment Management System',
-    role: 'Solo project (end-to-end)',
-    description:
-      'Client-based full-stack web application built to replace manual Excel tracking with a digital system for managing rental properties and tenants.',
-    tech: ['React', 'Tailwind CSS', 'FastAPI', 'PostgreSQL'],
-    github: 'https://github.com/Ahman04/apartment-management-system',
-    videoDemo: '/apartmentmanagement.webm',
-    demo: '',
-    demoNote: 'Client project — demo available on request.',
-    image: apartmentImage,
-  },
-  {
     title: 'Digital Library Management System',
     role: 'Solo project (full stack)',
     description:
@@ -112,14 +121,30 @@ const projects = [
     demo: 'https://autospare-hub-indol.vercel.app/',
     image: autospareImage,
   },
+  {
+    title: 'The Synergy Circle - Event & Community Platform',
+    role: 'Mobile-first web app (frontend)',
+    description:
+      'Built a mobile-first platform for communities to publish events, manage registrations, and grow engagement, including event discovery filters, detailed event pages, registration flow, shareable links, event-level SEO metadata, and a protected admin dashboard for event CRUD, featured events, attendance, and analytics.',
+    tech: [
+      'React',
+      'TypeScript',
+      'Vite',
+      'React Router',
+      'Custom CSS system',
+      'FastAPI architecture planned',
+      'PostgreSQL architecture planned',
+    ],
+    github: 'https://github.com/Ahman04/synergy-circle-hub.git',
+    demo: 'https://synergy-circle-hub.vercel.app/',
+    demoNote: 'Live demo and repository available.',
+    image: synergyCircleImage,
+  },
 ]
 
 const skills = [
-  { label: 'IT Technical Support', icon: '🛠️' },
-  { label: 'Hardware & Software Setup', icon: '💻' },
-  { label: 'System Administration Basics', icon: '⚙️' },
-  { label: 'End-User Support', icon: '🤝' },
   { label: 'React', icon: '⚛️' },
+  { label: 'AI', icon: '🤖' },
   { label: 'HTML5', icon: '📄' },
   { label: 'CSS3', icon: '🎨' },
   { label: 'Tailwind', icon: '🌬️' },
@@ -139,11 +164,18 @@ const skills = [
 
 const certificates = [
   {
-    title: 'Software Engineering Bootcamp',
+    title: 'Artificial Intelligence',
     org: 'Moringa School',
-    year: '2024',
+    year: '2026',
     image: myCertificateImage,
     pdf: bootcampPdf,
+  },
+  {
+    title: 'Software Engineering Bootcamp',
+    org: 'Moringa School',
+    year: 'Completed',
+    image: myCertificateImage,
+    note: 'Completed - certificate not received yet.',
   },
   {
     title: 'Diploma in Business Information Technology',
@@ -198,16 +230,14 @@ function Hero() {
               viewport={{ once: true, amount: 0.4 }}
               className="text-xl md:text-2xl text-slate-300 mt-4"
             >
-              IT Technical Support &amp; Junior Software Developer
+              Junior Software Developer
             </Motion.p>
           </div>
 
           <p className="text-slate-300 leading-relaxed max-w-2xl">
-            I build practical full-stack web applications and provide
-            entry-level IT technical support, including network
-            troubleshooting, system setup, and end-user assistance. I enjoy
-            solving real problems and improving through hands-on projects and
-            feedback.
+            I build practical full-stack web applications using Python, React,
+            and PostgreSQL. I enjoy learning new technologies, solving real
+            problems, and improving through hands-on projects and feedback.
           </p>
 
           <div className="flex flex-wrap gap-4">
@@ -281,15 +311,22 @@ function About() {
               About Me
             </Motion.h2>
             <p className="text-slate-300 leading-relaxed">
-              Motivated junior professional with a Diploma in Business
-              Information Technology from Strathmore University, completed
-              Software Engineering Bootcamp training from Moringa School, and
-              Artificial Intelligence Launchpad certification. Eager to
-              contribute as an IT Technical Support partner while leveraging
-              software development capabilities to support organizational
-              technology needs and digital solutions. Committed to continuous
-              learning and professional growth in a collaborative team
-              environment.
+              I’m Abdirahman Mohamed, a passionate Software Engineer with a
+              strong focus on building practical, user-centered web
+              applications. I specialize in developing full-stack solutions
+              that solve real-world problems using modern technologies.
+            </p>
+            <p className="text-slate-300 leading-relaxed">
+              My experience includes working with React, Tailwind CSS, FastAPI,
+              SQLAlchemy, PostgreSQL, and JWT authentication to build scalable,
+              secure systems. I enjoy turning complex requirements into clean,
+              intuitive interfaces backed by reliable APIs.
+            </p>
+            <p className="text-slate-300 leading-relaxed">
+              Beyond coding, I’m deeply interested in AI-driven solutions,
+              automation, and continuous learning. I’m currently growing my
+              skills through hands-on projects and real client work, with the
+              goal of contributing to impactful products and innovative teams.
             </p>
 
           </div>
@@ -300,7 +337,6 @@ function About() {
               <li>• Curious learner who grows through feedback</li>
               <li>• Clean, readable code and thoughtful UI</li>
               <li>• Practical solutions that help real users</li>
-              <li>• User-focused IT support and reliable issue resolution</li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-2">
               {['Python', 'React', 'PostgreSQL', 'APIs', 'Testing'].map((tag) => (
@@ -379,12 +415,16 @@ function ProjectCard({
       style={{ transformStyle: 'preserve-3d' }}
     >
       <div className="relative h-44">
-        <img
-          src={image}
-          alt={`${title} preview`}
-          className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-          loading="lazy"
-        />
+        {image ? (
+          <img
+            src={image}
+            alt={`${title} preview`}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+            loading="lazy"
+          />
+        ) : (
+          <div className="h-full w-full bg-gradient-to-br from-slate-900 via-slate-800 to-black transition-transform duration-500 ease-out group-hover:scale-110" />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
         <div className="absolute left-5 bottom-4">
           <h3 className="text-lg font-semibold">{title}</h3>
@@ -538,7 +578,7 @@ function Certificates() {
   )
 }
 
-function CertificateCard({ title, org, year, image, pdf }) {
+function CertificateCard({ title, org, year, image, pdf, note }) {
   return (
     <Motion.div
       variants={{
@@ -557,14 +597,18 @@ function CertificateCard({ title, org, year, image, pdf }) {
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="text-slate-300">{org}</p>
         <p className="text-sm text-slate-300">{year}</p>
-        <a
-          href={pdf}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="link-sweep inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:text-cyan-200 transition-colors"
-        >
-          View Certificate →
-        </a>
+        {pdf ? (
+          <a
+            href={pdf}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-sweep inline-flex items-center gap-2 text-sm font-medium text-cyan-300 hover:text-cyan-200 transition-colors"
+          >
+            View Certificate →
+          </a>
+        ) : (
+          <p className="text-sm text-slate-300">{note || 'Certificate pending.'}</p>
+        )}
       </div>
     </Motion.div>
   )
