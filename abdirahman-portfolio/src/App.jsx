@@ -5,9 +5,10 @@ import profileImage from './profile.jpg'
 import apartmentImage from './apartment.webp'
 import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
-import myDukaImage from './Warehouse inventory management overview.png'
+import myDukaImage from './Warehouse inventory management overview.webp'
 import synergyCircleImage from './Pasted image.png'
-import globeVistaImage from './hero section.png'
+import globeVistaImage from './hero section.webp'
+import gdaImage from './About.webp'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
 import myCertificateImage from './mycerficate.webp'
@@ -40,6 +41,24 @@ const whatsappMessage = encodeURIComponent(
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
 
 const projects = [
+  {
+    title: 'Go Digital Africa Website',
+    role: 'Solo project (frontend implementation)',
+    description:
+      'Corporate marketing website built for a digital transformation and marketing agency, with multilingual support, animated product and service showcases, lead capture flows, and a polished responsive user experience.',
+    tech: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Framer Motion',
+      'Vite',
+      'Google Translate Integration',
+    ],
+    github: 'https://github.com/Ahman04/GDA.git',
+    demo: 'https://gda-iota.vercel.app/#',
+    demoNote: 'Live demo and repository available.',
+    image: gdaImage,
+  },
   {
     title: 'Apartment Management System',
     role: 'Solo project (end-to-end)',
@@ -212,25 +231,28 @@ function Hero() {
   return (
     <section className="section-hero min-h-screen flex items-center px-6 py-24 relative">
       <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
-        <Motion.div {...fadeUp} className="space-y-8">
+        <Motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+          className="space-y-8"
+        >
           <div>
             <Motion.h1
               initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.65, ease: 'easeOut' }}
-              viewport={{ once: true, amount: 0.4 }}
               className="text-4xl md:text-6xl font-semibold tracking-tight font-display"
             >
               Hi, I’m <span className="name-emphasis">Abdirahman</span> 👋
             </Motion.h1>
             <Motion.p
               initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
-              viewport={{ once: true, amount: 0.4 }}
               className="text-xl md:text-2xl text-slate-300 mt-4"
             >
-              Junior Software Developer
+              Software Developer
             </Motion.p>
           </div>
 
@@ -269,9 +291,8 @@ function Hero() {
 
         <Motion.div
           initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.3 }}
           className="flex justify-center lg:justify-end"
         >
           <Motion.div
