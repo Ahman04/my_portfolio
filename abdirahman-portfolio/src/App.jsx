@@ -9,6 +9,8 @@ import myDukaImage from './Warehouse inventory management overview.webp'
 import synergyCircleImage from './Pasted image.png'
 import globeVistaImage from './hero section.webp'
 import gdaImage from './About.webp'
+import pyramidBuildersImage from './Pyramid Builders.png'
+import caravanCafeImage from './caravan cafe.png'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
 import myCertificateImage from './mycerficate.webp'
@@ -77,6 +79,44 @@ const projects = [
     demo: '',
     demoNote: 'Client project — demo available on request.',
     image: apartmentImage,
+  },
+  {
+    title: 'Pyramid Builders - Premium Real Estate Website',
+    role: 'Solo project (frontend)',
+    description:
+      'Luxury real estate website for a Nairobi developer, featuring cinematic project showcases, animated galleries, enquiry flows, and a polished investor-facing experience.',
+    tech: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Framer Motion',
+      'Vite',
+      'Swiper.js',
+      'Property Gallery & Project Pages',
+      'Admin Dashboard UI',
+    ],
+    github: 'https://github.com/Ahman04/pyramid-vision.git',
+    demo: 'https://pyramid-builders.vercel.app/',
+    demoNote: 'Live demo and repository available.',
+    image: pyramidBuildersImage,
+  },
+  {
+    title: 'Caravan Cafe Restaurant Website',
+    role: 'Solo project (frontend)',
+    description:
+      'Restaurant website with a polished hospitality brand experience, animated menu and gallery sections, reservation flows, and a responsive interface for desktop and mobile.',
+    tech: [
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Framer Motion',
+      'Vite',
+      'React Router',
+    ],
+    github: 'https://github.com/Ahman04/caravan-cafe-showcase.git',
+    demo: 'https://caravan-cafe-254.vercel.app/',
+    demoNote: 'Live demo and repository available.',
+    image: caravanCafeImage,
   },
   {
     title: 'GLOBEVISTA Adventure Ltd Website',
