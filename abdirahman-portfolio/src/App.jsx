@@ -6,20 +6,19 @@ import apartmentImage from './apartment.webp'
 import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
 import myDukaImage from './Warehouse inventory management overview.webp'
-import synergyCircleImage from './Pasted image.png'
+import synergyCircleImage from './Pasted image.webp'
 import globeVistaImage from './hero section.webp'
 import gdaImage from './About.webp'
-import pyramidBuildersImage from './Pyramid Builders.png'
-import caravanCafeImage from './caravan cafe.png'
+import pyramidBuildersImage from './Pyramid Builders.webp'
+import caravanCafeImage from './caravan cafe.webp'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
 import myCertificateImage from './mycerficate.webp'
 
 const fadeUp = {
   initial: { opacity: 0, y: 18 },
-  whileInView: { opacity: 1, y: 0 },
+  animate: { opacity: 1, y: 0 },
   transition: { duration: 0.6, ease: 'easeOut' },
-  viewport: { once: true, amount: 0.25 },
 }
 
 const stagger = {
@@ -36,7 +35,7 @@ const cvPdfFileName = 'Abdirahman Mohamed Adan_CV.pdf'
 const cvOpenPath = `/${encodeURIComponent(cvPdfFileName)}`
 const contactFormAction = 'https://formspree.io/f/mwvqzldv'
 const isContactFormConfigured = !contactFormAction.includes('your-form-id')
-const whatsappNumber = '254700000000'
+const whatsappNumber = '254759473388'
 const whatsappMessage = encodeURIComponent(
   "Hi Abdirahman, I'd like to talk about a project.",
 )
@@ -362,14 +361,13 @@ function About() {
       <Motion.div {...fadeUp} className="max-w-5xl mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
           <div className="space-y-6">
-            <Motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: 'easeOut' }}
-              viewport={{ once: true, amount: 0.45 }}
-              className="text-3xl md:text-4xl font-semibold font-display section-title"
-            >
-              About Me
+          <Motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            className="text-3xl md:text-4xl font-semibold font-display section-title"
+          >
+            About Me
             </Motion.h2>
             <p className="text-slate-300 leading-relaxed">
               I’m Abdirahman Mohamed, a passionate Software Engineer with a
@@ -436,16 +434,11 @@ function Projects() {
           </p>
         </div>
 
-        <Motion.div
-          variants={stagger}
-          initial="hidden"
-          animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
-        </Motion.div>
+        </div>
       </Motion.div>
     </section>
   )
@@ -464,14 +457,11 @@ function ProjectCard({
 }) {
   return (
     <Motion.div
-      variants={{
-        hidden: { opacity: 0, y: 16 },
-        show: { opacity: 1, y: 0 },
-      }}
-      whileHover={{ rotateX: 2, rotateY: -2, y: -6 }}
-      transition={{ type: 'spring', stiffness: 180, damping: 16 }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
       className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden"
-      style={{ transformStyle: 'preserve-3d' }}
     >
       <div className="relative h-44">
         {image ? (
@@ -552,9 +542,8 @@ function Skills() {
         <div className="text-center mb-12 space-y-3">
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.45 }}
             className="text-3xl md:text-4xl font-semibold font-display section-title"
           >
             Skills
@@ -567,8 +556,7 @@ function Skills() {
         <Motion.div
           variants={stagger}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="show"
           className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6"
         >
           {skills.map((skill) => (
@@ -609,9 +597,8 @@ function Certificates() {
         <div className="text-center mb-12 space-y-3">
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.45 }}
             className="text-3xl md:text-4xl font-semibold font-display section-title"
           >
             Certificates
@@ -624,8 +611,7 @@ function Certificates() {
         <Motion.div
           variants={stagger}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="show"
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           {certificates.map((certificate) => (
@@ -682,9 +668,8 @@ function Education() {
         <div className="text-center mb-12 space-y-3">
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.45 }}
             className="text-3xl md:text-4xl font-semibold font-display section-title"
           >
             Education
@@ -697,9 +682,8 @@ function Education() {
         <div className="space-y-6">
           <Motion.div
             initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.2 }}
             whileHover={{ y: -4, scale: 1.01 }}
             className="interactive-card border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
           >
@@ -711,9 +695,8 @@ function Education() {
 
           <Motion.div
             initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.03 }}
-            viewport={{ once: true, amount: 0.2 }}
             whileHover={{ y: -4, scale: 1.01 }}
             className="interactive-card border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
           >
@@ -727,9 +710,8 @@ function Education() {
 
           <Motion.div
             initial={{ opacity: 0, y: 14 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.05 }}
-            viewport={{ once: true, amount: 0.2 }}
             whileHover={{ y: -4, scale: 1.01 }}
             className="interactive-card border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl"
           >
@@ -780,18 +762,16 @@ function Contact() {
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <Motion.h2
           initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: 'easeOut' }}
-          viewport={{ once: true, amount: 0.45 }}
           className="text-3xl md:text-4xl font-semibold mb-3 font-display section-title"
         >
           Let’s Connect
         </Motion.h2>
         <Motion.p
           initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut', delay: 0.06 }}
-          viewport={{ once: true, amount: 0.45 }}
           className="text-slate-300 mb-10"
         >
           Send a quick message below or use the direct links.
@@ -800,8 +780,7 @@ function Contact() {
         <Motion.div
           variants={stagger}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="show"
           className="mb-8"
         >
           <Motion.form
@@ -864,8 +843,7 @@ function Contact() {
         <Motion.div
           variants={stagger}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="show"
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
           <Motion.a
