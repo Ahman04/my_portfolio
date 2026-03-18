@@ -425,9 +425,8 @@ function Projects() {
         <div className="text-center mb-12 space-y-3">
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            viewport={{ once: true, amount: 0.45 }}
             className="text-3xl md:text-4xl font-semibold font-display section-title"
           >
             Projects
@@ -440,8 +439,7 @@ function Projects() {
         <Motion.div
           variants={stagger}
           initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          animate="show"
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {projects.map((project) => (
