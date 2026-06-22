@@ -291,7 +291,7 @@ function Hero() {
               transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
               className="text-xl md:text-2xl text-slate-300 mt-4"
             >
-              Software Developer
+              SOFTWARE ENGINEER
             </Motion.p>
           </div>
 
