@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/freelance/:path*",
+      "destination": "/index.html"
+    }
+  ]
+}

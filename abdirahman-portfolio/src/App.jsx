@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion as Motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/shiny-button-1'
-import profileImage from './profile.jpg'
+import profileImage from './me.png'
 import apartmentImage from './apartment.webp'
 import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
@@ -36,6 +36,7 @@ const cvOpenPath = `/${encodeURIComponent(cvPdfFileName)}`
 const contactFormAction = 'https://formspree.io/f/mwvqzldv'
 const isContactFormConfigured = !contactFormAction.includes('your-form-id')
 const whatsappNumber = '254759473388'
+const whatsappDisplay = '0759 473 388'
 const whatsappMessage = encodeURIComponent(
   "Hi Abdirahman, I'd like to talk about a project.",
 )
@@ -224,7 +225,7 @@ const certificates = [
   {
     title: 'Artificial Intelligence',
     org: 'Moringa School',
-    year: '2026',
+    year: '1st December 2025 – 18th December 2025',
     image: myCertificateImage,
     pdf: bootcampPdf,
   },
@@ -244,23 +245,129 @@ const certificates = [
   },
 ]
 
+const experiences = [
+  {
+    role: 'IT Manager',
+    company: 'Alta Wings Aviation',
+    location: 'Nairobi, Kenya',
+    period: 'June 2026 — Present',
+    description:
+      'Manage the company’s IT systems, digital platforms, aviation software, and technical support operations.',
+  },
+  {
+    role: 'Freelance Full Stack Developer',
+    company: 'Self-Employed',
+    location: 'Nairobi, Kenya',
+    description:
+      'Design and develop responsive websites and business systems for real clients.',
+  },
+  {
+    role: 'Software Development Projects',
+    company: 'Independent Projects',
+    description:
+      'Developed practical web applications that solve business and user problems.',
+  },
+]
+
 function App() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none fixed inset-0" aria-hidden="true">
         <div className="absolute -top-40 right-10 h-96 w-96 rounded-full bg-blob-cyan blur-[140px]" />
         <div className="absolute top-40 left-0 h-[28rem] w-[28rem] rounded-full bg-blob-indigo blur-[160px]" />
         <div className="absolute bottom-0 right-0 h-[26rem] w-[26rem] rounded-full bg-blob-emerald blur-[180px]" />
       </div>
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Certificates />
-      <Education />
-      <Contact />
+      <Header />
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Certificates />
+        <Education />
+        <Contact />
+      </main>
       <Footer />
     </div>
+  )
+}
+
+function Header() {
+  return (
+    <header className="site-header">
+      <a href="#home" className="site-brand" aria-label="Abdirahman Mohamed — home">
+        <span className="site-brand__mark">AM</span>
+        <span className="site-brand__name">Abdirahman Mohamed</span>
+      </a>
+      <nav className="site-nav" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="/freelance">Freelance</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href={cvOpenPath} target="_blank" rel="noopener noreferrer" className="header-cta">
+        View CV <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+  )
+}
+
+/* ================= EXPERIENCE ================= */
+
+function Experience() {
+  return (
+    <section id="experience" className="section-experience py-24 px-6">
+      <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
+        <div className="text-center mb-12 space-y-3">
+          <p className="section-eyebrow">02 · Experience</p>
+          <Motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, ease: 'easeOut' }}
+            className="text-3xl md:text-4xl font-semibold font-display section-title"
+          >
+            Professional Experience
+          </Motion.h2>
+          <p className="text-slate-300">
+            Technical leadership, client work, and practical software development.
+          </p>
+        </div>
+
+        <div className="experience-list">
+          {experiences.map((experience, index) => (
+            <Motion.article
+              key={experience.role}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: 'easeOut', delay: index * 0.05 }}
+              whileHover={{ y: -4 }}
+              className="experience-card"
+            >
+              <div className="experience-card__heading">
+                <span className="experience-card__number">0{index + 1}</span>
+                <div>
+                  <h3>{experience.role}</h3>
+                  <p>{experience.company}</p>
+                </div>
+              </div>
+              <div className="experience-card__details">
+                {(experience.period || experience.location) ? (
+                  <p className="experience-card__meta">
+                    {experience.period}
+                    {experience.period && experience.location ? <span aria-hidden="true"> · </span> : null}
+                    {experience.location}
+                  </p>
+                ) : null}
+                <p>{experience.description}</p>
+              </div>
+            </Motion.article>
+          ))}
+        </div>
+      </Motion.div>
+    </section>
   )
 }
 
@@ -268,86 +375,75 @@ function App() {
 
 function Hero() {
   return (
-    <section className="section-hero min-h-screen flex items-center px-6 py-24 relative">
-      <div className="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 items-center">
-        <Motion.div
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="space-y-8"
-        >
+    <section id="home" className="section-hero min-h-screen flex items-center px-6 py-28 relative">
+      <img
+        src={profileImage}
+        alt="Abdirahman Mohamed in a modern office"
+        width="1672"
+        height="941"
+        className="hero-background-image"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+      />
+      <div className="hero-background-overlay" aria-hidden="true" />
+      <div className="hero-side-note" aria-hidden="true">
+        <span>Portfolio</span>
+        <span className="hero-side-note__line" />
+        <span>2026</span>
+      </div>
+      <div className="hero-content max-w-[84rem] mx-auto w-full">
+        <div className="w-full max-w-3xl space-y-8">
           <div>
-            <Motion.h1
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: 'easeOut' }}
-              className="text-4xl md:text-6xl font-semibold tracking-tight font-display"
-            >
-              Hi, I’m <span className="name-emphasis">Abdirahman</span> 👋
-            </Motion.h1>
-            <Motion.p
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, ease: 'easeOut', delay: 0.08 }}
-              className="text-xl md:text-2xl text-slate-300 mt-4"
-            >
-              SOFTWARE ENGINEER
-            </Motion.p>
+            <p className="hero-kicker">
+              <span className="status-dot" aria-hidden="true" />
+              Software Engineer · Nairobi, Kenya
+            </p>
+            <h1 className="hero-title text-4xl md:text-6xl font-semibold tracking-tight font-display">
+              Building practical <span className="name-emphasis">digital products</span> that make a difference.
+            </h1>
+            <p className="text-lg md:text-xl text-slate-300 mt-5">
+              Hi, I’m Abdirahman — a full-stack developer turning business needs
+              into useful, reliable digital products.
+            </p>
           </div>
 
-          <p className="text-slate-300 leading-relaxed max-w-2xl">
-            I build practical full-stack web applications using Python, React,
-            and PostgreSQL. I enjoy learning new technologies, solving real
-            problems, and improving through hands-on projects and feedback.
+          <p className="hero-summary text-slate-300 leading-relaxed max-w-2xl">
+            From polished React interfaces to secure Python APIs and PostgreSQL
+            systems, I build complete web experiences designed around real users.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="hero-focus" aria-label="Core development focus">
+            <div>
+              <span>01</span>
+              <p>Frontend experiences</p>
+            </div>
+            <div>
+              <span>02</span>
+              <p>Backend systems</p>
+            </div>
+            <div>
+              <span>03</span>
+              <p>Business solutions</p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
             <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <GlowButton href="#projects">View Projects</GlowButton>
             </Motion.div>
             <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <GlowButton href="https://github.com/Ahman04" target="_blank" rel="noopener noreferrer">
-                GitHub
-              </GlowButton>
-            </Motion.div>
-            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <GlowButton href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <GlowButton variant="secondary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                 Let&apos;s Talk
               </GlowButton>
             </Motion.div>
-            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <GlowButton href={cvOpenPath} target="_blank" rel="noopener noreferrer">
-                Open CV
-              </GlowButton>
-            </Motion.div>
-            <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <GlowButton href={cvFilePath} download={cvFileName}>
-                Download CV
-              </GlowButton>
-            </Motion.div>
           </div>
-        </Motion.div>
-
-        <Motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: 'easeOut' }}
-          className="flex justify-center lg:justify-end"
-        >
-          <Motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative"
-          >
-            <div className="absolute -inset-6 rounded-[28px] border border-cyan-400/40 bg-white/5 backdrop-blur" />
-            <img
-              src={profileImage}
-              alt="Portrait of Abdirahman"
-              className="h-80 w-80 md:h-96 md:w-96 rounded-[24px] object-cover object-top border border-white/30 shadow-2xl shadow-cyan-500/25 brightness-105 contrast-105 saturate-110"
-              loading="eager"
-            />
-          </Motion.div>
-        </Motion.div>
+          <div className="hero-links" aria-label="Additional profile links">
+            <a href="https://github.com/Ahman04" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href={cvFilePath} download={cvFileName}>Download CV ↓</a>
+            <a href="/freelance">Freelance Services ↗</a>
+          </div>
+        </div>
       </div>
     </section>
   )
@@ -357,10 +453,11 @@ function Hero() {
 
 function About() {
   return (
-    <section className="section-about py-24 px-6">
+    <section id="about" className="section-about py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-5xl mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
           <div className="space-y-6">
+          <p className="section-eyebrow">01 · About</p>
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -419,8 +516,9 @@ function About() {
 function Projects() {
   return (
     <section id="projects" className="section-projects py-24 px-6">
-      <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
+      <Motion.div {...fadeUp} className="max-w-[84rem] mx-auto">
         <div className="text-center mb-12 space-y-3">
+          <p className="section-eyebrow">03 · Selected work</p>
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -434,7 +532,7 @@ function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 lg:gap-8">
           {projects.map((project) => (
             <ProjectCard key={project.title} {...project} />
           ))}
@@ -461,7 +559,7 @@ function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.45, ease: 'easeOut' }}
-      className="group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden"
+      className="project-card group interactive-card border border-white/10 rounded-2xl bg-white/5 backdrop-blur-xl shadow-lg shadow-black/20 hover:shadow-cyan-500/20 transition-all duration-300 overflow-hidden"
     >
       <div className="relative h-44">
         {image ? (
@@ -493,7 +591,7 @@ function ProjectCard({
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-4 text-sm font-medium">
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm font-medium">
           {github ? (
             <a
               href={github}
@@ -537,9 +635,10 @@ function ProjectCard({
 
 function Skills() {
   return (
-    <section className="section-skills py-24 px-6">
+    <section id="skills" className="section-skills py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
+          <p className="section-eyebrow">04 · Capabilities</p>
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -592,9 +691,10 @@ function SkillIcon({ label, icon }) {
 
 function Certificates() {
   return (
-    <section className="section-certificates py-24 px-6">
+    <section id="certificates" className="section-certificates py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
         <div className="text-center mb-12 space-y-3">
+          <p className="section-eyebrow">05 · Credentials</p>
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -663,9 +763,10 @@ function CertificateCard({ title, org, year, image, pdf, note }) {
 
 function Education() {
   return (
-    <section className="section-education py-24 px-6">
+    <section id="education" className="section-education py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-4xl mx-auto">
         <div className="text-center mb-12 space-y-3">
+          <p className="section-eyebrow">06 · Education</p>
           <Motion.h2
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -758,8 +859,9 @@ function Contact() {
   }
 
   return (
-    <section className="section-contact py-24 px-6">
+    <section id="contact" className="section-contact py-24 px-6">
       <Motion.div {...fadeUp} className="max-w-6xl mx-auto">
+        <p className="section-eyebrow">07 · Contact</p>
         <Motion.h2
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -797,6 +899,7 @@ function Contact() {
                 name="name"
                 required
                 placeholder="Your name"
+                aria-label="Your name"
                 className="rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
               />
               <input
@@ -804,6 +907,7 @@ function Contact() {
                 name="email"
                 required
                 placeholder="Your email"
+                aria-label="Your email"
                 className="rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
               />
             </div>
@@ -812,6 +916,7 @@ function Contact() {
               required
               rows="5"
               placeholder="Tell me about your project..."
+              aria-label="Your message"
               className="w-full rounded-lg border border-white/15 bg-slate-900/60 px-4 py-3 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
             />
             <input type="hidden" name="_subject" value="New portfolio contact message" />
@@ -902,8 +1007,47 @@ function Contact() {
 
 function Footer() {
   return (
-    <footer className="py-8 text-center text-sm text-slate-400 border-t border-white/10">
-      © {new Date().getFullYear()} Abdirahman Mohamed
+    <footer className="site-footer border-t border-white/10">
+      <div className="site-footer__inner">
+        <div className="site-footer__intro">
+          <a href="#home" className="site-brand" aria-label="Abdirahman Mohamed — back to home">
+            <span className="site-brand__mark">AM</span>
+            <span className="site-brand__name">Abdirahman Mohamed</span>
+          </a>
+          <h2 className="font-display">Let’s build something useful together.</h2>
+          <p>
+            I’m always interested in thoughtful projects, collaborative teams,
+            and opportunities to create practical digital products.
+          </p>
+        </div>
+
+        <div className="site-footer__column">
+          <h3>Navigate</h3>
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#certificates">Certificates</a>
+          <a href="#contact">Contact</a>
+        </div>
+
+        <div className="site-footer__column">
+          <h3>Connect</h3>
+          <a href="https://github.com/Ahman04" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/abdirahman-mohamed-9b4a5a396/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+            WhatsApp · {whatsappDisplay} ↗
+          </a>
+          <a href="mailto:m.abdirahmanmohamed.adan@gmail.com">Email ↗</a>
+        </div>
+      </div>
+
+      <div className="site-footer__bottom">
+        <p>© {new Date().getFullYear()} Abdirahman Mohamed. Built with care in Nairobi.</p>
+        <a href="#home" className="back-to-top">
+          Back to top <span aria-hidden="true">↑</span>
+        </a>
+      </div>
     </footer>
   )
 }
