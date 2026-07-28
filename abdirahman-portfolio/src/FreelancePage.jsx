@@ -1,13 +1,16 @@
 import { useEffect } from 'react'
 import { motion as Motion } from 'framer-motion'
-import heroImage from './me.png'
+import SiteHeader from '@/components/SiteHeader'
+import { freelanceNavigation, freelanceWhatsAppUrl } from '@/config/site'
+import heroImage from './me.webp'
+import heroImageSmall from './me-1280.webp'
+import salbaImage from './salba-office-about.webp'
+import apartmentImage from './apartment.webp'
+import pyramidImage from './Pyramid Builders.webp'
+import gdaImage from './About.webp'
+import globeVistaImage from './hero section.webp'
+import caravanImage from './caravan cafe.webp'
 import './freelance.css'
-
-const whatsappNumber = '254759473388'
-const whatsappMessage = encodeURIComponent(
-  "Hi Abdirahman, I'd like to discuss a freelance project with you.",
-)
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
 
 const services = [
   {
@@ -67,6 +70,69 @@ const process = [
   },
 ]
 
+const selectedProjects = [
+  {
+    title: 'Salba Group Real Estate Website',
+    type: 'Client project · Full-stack',
+    description:
+      'Property discovery and inquiry platform with secure admin management, image uploads, viewing bookings, and lead tracking.',
+    image: salbaImage,
+    github: 'https://github.com/Ahman04/salba-real-estate-website',
+    demo: 'https://salbagroup.com',
+    demoLabel: 'Live website',
+  },
+  {
+    title: 'Apartment Management System',
+    type: 'Client project · Full-stack',
+    description:
+      'Rental operations system built to replace manual Excel tracking for properties, tenants, and day-to-day management.',
+    image: apartmentImage,
+    github: 'https://github.com/Ahman04/apartment-management-system',
+    demo: '/apartmentmanagement.webm',
+    demoLabel: 'Video demo',
+  },
+  {
+    title: 'Pyramid Builders',
+    type: 'Premium real estate website',
+    description:
+      'Investor-facing property experience with cinematic showcases, project galleries, and polished enquiry flows.',
+    image: pyramidImage,
+    github: 'https://github.com/Ahman04/pyramid-vision.git',
+    demo: 'https://pyramid-builders.vercel.app/',
+    demoLabel: 'Live website',
+  },
+  {
+    title: 'Go Digital Africa',
+    type: 'Corporate marketing website',
+    description:
+      'Responsive agency website featuring multilingual support, animated services, product showcases, and lead capture.',
+    image: gdaImage,
+    github: 'https://github.com/Ahman04/GDA.git',
+    demo: 'https://gda-iota.vercel.app/',
+    demoLabel: 'Live website',
+  },
+  {
+    title: 'GLOBEVISTA Adventure Ltd',
+    type: 'Travel and corporate website',
+    description:
+      'Multi-page company website presenting travel, team-building services, testimonials, galleries, and contact pathways.',
+    image: globeVistaImage,
+    github: 'https://github.com/Ahman04/globevista-website.git',
+    demo: 'https://globevista-website.vercel.app/',
+    demoLabel: 'Live website',
+  },
+  {
+    title: 'Caravan Cafe Restaurant Website',
+    type: 'Hospitality website',
+    description:
+      'Restaurant brand experience with responsive menus, galleries, reservation flows, and polished mobile interactions.',
+    image: caravanImage,
+    github: 'https://github.com/Ahman04/caravan-cafe-showcase.git',
+    demo: 'https://caravan-cafe-254.vercel.app/',
+    demoLabel: 'Live website',
+  },
+]
+
 function FreelancePage() {
   useEffect(() => {
     document.title = 'Freelance Full-Stack Developer | Abdirahman Mohamed'
@@ -74,25 +140,22 @@ function FreelancePage() {
 
   return (
     <div className="freelance-page">
-      <header className="freelance-header">
-        <a href="/" className="site-brand" aria-label="Return to Abdirahman Mohamed portfolio">
-          <span className="site-brand__mark">AM</span>
-          <span className="site-brand__name">Abdirahman Mohamed</span>
-        </a>
-        <nav aria-label="Freelance page navigation">
-          <a href="#services">Services</a>
-          <a href="#process">Process</a>
-          <a href="/#projects">Portfolio</a>
-        </nav>
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="header-cta">
-          Start a project <span aria-hidden="true">↗</span>
-        </a>
-      </header>
+      <SiteHeader
+        navigation={freelanceNavigation}
+        brandHref="/"
+        brandLabel="Return to Abdirahman Mohamed portfolio"
+        ctaHref={freelanceWhatsAppUrl}
+        ctaLabel="Start a project"
+        ctaTarget="_blank"
+        className="freelance-header"
+      />
 
       <main>
         <section className="freelance-hero">
           <img
             src={heroImage}
+            srcSet={`${heroImageSmall} 1280w, ${heroImage} 1672w`}
+            sizes="100vw"
             alt="Abdirahman Mohamed in a modern office"
             width="1672"
             height="941"
@@ -114,7 +177,7 @@ function FreelancePage() {
               reliable digital products—from the first screen to deployment.
             </p>
             <div className="freelance-hero__actions">
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="freelance-button freelance-button--primary">
+              <a href={freelanceWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="freelance-button freelance-button--primary">
                 Discuss your project <span aria-hidden="true">↗</span>
               </a>
               <a href="#services" className="freelance-button freelance-button--secondary">
@@ -146,6 +209,43 @@ function FreelancePage() {
                 <span>{service.number}</span>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
+              </Motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section id="work" className="freelance-section freelance-work">
+          <div className="freelance-section__heading">
+            <div>
+              <p className="section-eyebrow">Selected work</p>
+              <h2 className="font-display">Projects built for real businesses</h2>
+            </div>
+            <p>
+              A selection of client projects and business-focused platforms I have
+              designed and developed across real estate, marketing, travel, and hospitality.
+            </p>
+          </div>
+
+          <div className="freelance-work__grid">
+            {selectedProjects.map((project) => (
+              <Motion.article key={project.title} whileHover={{ y: -6 }} className="freelance-work-card">
+                <div className="freelance-work-card__image">
+                  <img src={project.image} alt={`${project.title} preview`} loading="lazy" />
+                  <div aria-hidden="true" />
+                  <span>{project.type}</span>
+                </div>
+                <div className="freelance-work-card__content">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className="freelance-work-card__links">
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                      {project.demoLabel} ↗
+                    </a>
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      GitHub ↗
+                    </a>
+                  </div>
+                </div>
               </Motion.article>
             ))}
           </div>
@@ -191,7 +291,7 @@ function FreelancePage() {
           <h2 className="font-display">Let’s turn it into something useful.</h2>
           <p>Tell me what you want to build, the problem you need to solve, and where you are in the process.</p>
           <div>
-            <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="freelance-button freelance-button--primary">
+            <a href={freelanceWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="freelance-button freelance-button--primary">
               Message on WhatsApp <span aria-hidden="true">↗</span>
             </a>
             <a href="mailto:m.abdirahmanmohamed.adan@gmail.com" className="freelance-button freelance-button--secondary">

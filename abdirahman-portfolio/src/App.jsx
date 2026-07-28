@@ -1,7 +1,19 @@
 import { useState } from 'react'
 import { motion as Motion } from 'framer-motion'
 import { GlowButton } from '@/components/ui/shiny-button-1'
-import profileImage from './me.png'
+import SiteHeader from '@/components/SiteHeader'
+import {
+  contactFormAction,
+  cvFileName,
+  cvFilePath,
+  cvOpenPath,
+  isContactFormConfigured,
+  portfolioNavigation,
+  portfolioWhatsAppUrl,
+  whatsappDisplay,
+} from '@/config/site'
+import profileImage from './me.webp'
+import profileImageSmall from './me-1280.webp'
 import apartmentImage from './apartment.webp'
 import digitalLibraryImage from './digitallibrary.webp'
 import autospareImage from './autospare.jpeg'
@@ -11,6 +23,7 @@ import globeVistaImage from './hero section.webp'
 import gdaImage from './About.webp'
 import pyramidBuildersImage from './Pyramid Builders.webp'
 import caravanCafeImage from './caravan cafe.webp'
+import salbaGroupImage from './salba-office-about.webp'
 import bootcampPdf from './abdirahman-mohamed_certificate.pdf'
 import diplomaPdf from './Strathmore DBIT.pdf'
 import myCertificateImage from './mycerficate.webp'
@@ -29,20 +42,35 @@ const stagger = {
   },
 }
 
-const cvFileName = 'Abdirahman Mohamed Adan_CV.docx'
-const cvFilePath = `/${encodeURIComponent(cvFileName)}`
-const cvPdfFileName = 'Abdirahman Mohamed Adan_CV.pdf'
-const cvOpenPath = `/${encodeURIComponent(cvPdfFileName)}`
-const contactFormAction = 'https://formspree.io/f/mwvqzldv'
-const isContactFormConfigured = !contactFormAction.includes('your-form-id')
-const whatsappNumber = '254759473388'
-const whatsappDisplay = '0759 473 388'
-const whatsappMessage = encodeURIComponent(
-  "Hi Abdirahman, I'd like to talk about a project.",
-)
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
-
 const projects = [
+  {
+    title: 'Salba Group Real Estate Website',
+    role: 'Client project · Full-Stack Developer & UI/UX Designer',
+    description:
+      'Responsive real estate platform that replaced manual property sharing with searchable listings, viewing bookings, inquiries, WhatsApp contact, and secure admin workflows for properties, media, and lead tracking.',
+    tech: [
+      'Next.js 16',
+      'React',
+      'TypeScript',
+      'Tailwind CSS',
+      'Supabase Database',
+      'Supabase Storage',
+      'Supabase Auth',
+      'Zod',
+      'React Hook Form',
+      'Nginx',
+      'Ubuntu VPS',
+      'GitHub',
+      'Let’s Encrypt SSL',
+      'SEO & Sitemap',
+      'Google Search Integration',
+    ],
+    github: 'https://github.com/Ahman04/salba-real-estate-website',
+    demo: 'https://salbagroup.com',
+    demoNote: 'Live client project.',
+    status: 'Live',
+    image: salbaGroupImage,
+  },
   {
     title: 'Go Digital Africa Website',
     role: 'Solo project (frontend implementation)',
@@ -295,23 +323,14 @@ function App() {
 
 function Header() {
   return (
-    <header className="site-header">
-      <a href="#home" className="site-brand" aria-label="Abdirahman Mohamed — home">
-        <span className="site-brand__mark">AM</span>
-        <span className="site-brand__name">Abdirahman Mohamed</span>
-      </a>
-      <nav className="site-nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="/freelance">Freelance</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a href={cvOpenPath} target="_blank" rel="noopener noreferrer" className="header-cta">
-        View CV <span aria-hidden="true">↗</span>
-      </a>
-    </header>
+    <SiteHeader
+      navigation={portfolioNavigation}
+      brandHref="#home"
+      brandLabel="Abdirahman Mohamed — home"
+      ctaHref={cvOpenPath}
+      ctaLabel="View CV"
+      ctaTarget="_blank"
+    />
   )
 }
 
@@ -378,6 +397,8 @@ function Hero() {
     <section id="home" className="section-hero min-h-screen flex items-center px-6 py-28 relative">
       <img
         src={profileImage}
+        srcSet={`${profileImageSmall} 1280w, ${profileImage} 1672w`}
+        sizes="100vw"
         alt="Abdirahman Mohamed in a modern office"
         width="1672"
         height="941"
@@ -433,7 +454,7 @@ function Hero() {
               <GlowButton href="#projects">View Projects</GlowButton>
             </Motion.div>
             <Motion.div whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <GlowButton variant="secondary" href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+              <GlowButton variant="secondary" href={portfolioWhatsAppUrl} target="_blank" rel="noopener noreferrer">
                 Let&apos;s Talk
               </GlowButton>
             </Motion.div>
@@ -551,6 +572,7 @@ function ProjectCard({
   videoDemo,
   demo,
   demoNote,
+  status,
   image,
 }) {
   return (
@@ -573,6 +595,7 @@ function ProjectCard({
           <div className="h-full w-full bg-gradient-to-br from-slate-900 via-slate-800 to-black transition-transform duration-500 ease-out group-hover:scale-110" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
+        {status ? <span className="project-status">{status}</span> : null}
         <div className="absolute left-5 bottom-4">
           <h3 className="text-lg font-semibold">{title}</h3>
           <p className="text-xs text-slate-300">{role}</p>
@@ -1035,7 +1058,7 @@ function Footer() {
           <h3>Connect</h3>
           <a href="https://github.com/Ahman04" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
           <a href="https://www.linkedin.com/in/abdirahman-mohamed-9b4a5a396/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+          <a href={portfolioWhatsAppUrl} target="_blank" rel="noopener noreferrer">
             WhatsApp · {whatsappDisplay} ↗
           </a>
           <a href="mailto:m.abdirahmanmohamed.adan@gmail.com">Email ↗</a>
